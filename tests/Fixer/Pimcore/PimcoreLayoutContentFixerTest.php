@@ -2,7 +2,6 @@
 
 namespace PhpCsFixer\Tests\Fixer\Pimcore;
 
-use PhpCsFixer\Fixer\Pimcore\PimcoreLayoutContentFixer;
 use PhpCsFixer\Test\AbstractFixerTestCase;
 
 /**
@@ -16,6 +15,14 @@ class PimcoreLayoutContentFixerTest extends AbstractFixerTestCase
     public function testFix($expected, $input = null)
     {
         $this->doTest($expected, $input);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getTestFile($filename = __FILE__)
+    {
+        return new \SplFileInfo('app/Resources/views/Content/default.html.php');
     }
 
     public function provideFixCases()
