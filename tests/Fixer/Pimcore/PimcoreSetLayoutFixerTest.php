@@ -45,6 +45,15 @@ class PimcoreSetLayoutFixerTest extends AbstractFixerTestCase
                 '<?php $this->extend(\'lay\' . \'out\' . \'.html.php\'); ?>',
                 '<?php $this->layout()->setLayout(\'lay\' . \'out\'); ?>',
             ],
+            [
+                '<?php $this->extend(\'lay\' . \'out\' . \'.html.php\'); ?>',
+                '<?php $this->layout()->setLayout(\'lay\' . \'out\'); ?>',
+            ],
+            [
+                // test nested call, even if the call makes no sense, but the fix should catch it properly
+                '<?php $this->extend($this->extend(\'layout.html.php\') . \'.html.php\'); ?>',
+                '<?php $this->layout()->setLayout($this->layout()->setLayout(\'layout\')); ?>',
+            ],
         ];
     }
 }
